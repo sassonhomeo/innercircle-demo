@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102e4f">
+  <meta name="description" content="InnerCircle — a private place to post, reflect, and hear from AI companions.">
+  <title>InnerCircle — Your private feed</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@1,6..72,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar" aria-label="Main navigation">
+      <a class="brand" href="#" aria-label="InnerCircle home">
+        <span class="brand-mark" aria-hidden="true">✦</span>
+        <span><strong>InnerCircle</strong><small>Just for you.</small></span>
+      </a>
+
+      <nav>
+        <button class="nav-item active" data-view="feed"><span>⌂</span>My Feed</button>
+        <button class="nav-item" data-view="memories"><span>◇</span>Memories</button>
+        <button class="nav-item" data-view="friends"><span>◎</span>AI Friends</button>
+        <button class="nav-item" data-view="journal"><span>▤</span>Journal</button>
+        <button class="nav-item" data-view="settings"><span>⚙</span>Settings</button>
+      </nav>
+
+      <div class="sidebar-note">
+        <p>A quieter place<br>to be yourself.</p>
+        <span>No followers. No performance.<br>No one else watching.</span>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="menu-button" id="menuButton" aria-label="Open menu">☰</button>
+        <div>
+          <p class="eyebrow"><span class="privacy-dot"></span>Private space</p>
+          <h1 id="pageTitle">Good morning, Sarah</h1>
+          <p id="pageSubtitle">What would you like to remember about today?</p>
+        </div>
+        <div class="profile-chip"><span class="avatar avatar-sarah">S</span><span>Sarah</span></div>
+      </header>
+
+      <section id="feedView" class="view active-view">
+        <article class="composer card">
+          <div class="composer-row">
+            <span class="avatar avatar-sarah">S</span>
+            <textarea id="postText" rows="2" maxlength="600" placeholder="What’s happening in your world?"></textarea>
+          </div>
+          <div id="imagePreviewWrap" class="image-preview-wrap" hidden>
+            <img id="imagePreview" alt="Your selected photo">
+            <button id="removePhoto" class="icon-button" aria-label="Remove photo">×</button>
+          </div>
+          <div class="composer-actions">
+            <div class="composer-tools">
+              <label class="tool-button" for="photoInput">▧ <span>Add photo</span></label>
+              <input id="photoInput" type="file" accept="image/*" hidden>
+              <button class="tool-button" id="moodButton">☺ <span>Add mood</span></button>
+              <span id="selectedMood" class="selected-mood" hidden></span>
+            </div>
+            <button id="postButton" class="primary-button">Post privately</button>
+          </div>
+        </article>
+
+        <div id="toast" class="toast" role="status" aria-live="polite"></div>
+        <div id="feed" class="feed" aria-live="polite"></div>
+      </section>
+
+      <section id="genericView" class="view"></section>
+    </main>
+
+    <aside class="rightbar">
+      <section class="circle-card card">
+        <div class="section-heading">
+          <div><p class="eyebrow">Always here</p><h2>Your AI Circle</h2></div>
+          <span class="online-pill">3 present</span>
+        </div>
+        <div class="friend-list">
+          <div class="friend"><span class="avatar avatar-maya">M</span><div><strong>Maya</strong><small>Supportive friend</small></div></div>
+          <div class="friend"><span class="avatar avatar-leo">L</span><div><strong>Leo</strong><small>Curious friend</small></div></div>
+          <div class="friend"><span class="avatar avatar-sam">S</span><div><strong>Sam</strong><small>Practical friend</small></div></div>
+        </div>
+      </section>
+
+      <section class="privacy-card">
+        <span class="lock" aria-hidden="true">⌑</span>
+        <p class="eyebrow">Your space is private</p>
+        <h2>Only you can see this</h2>
+        <p>Your posts are never visible to other users. In this demonstration, they stay only in this browser.</p>
+      </section>
+
+      <section class="thought-card">
+        <p>“You don’t have to impress anyone here.”</p>
+      </section>
+    </aside>
+  </div>
+
+  <div class="modal-backdrop" id="moodModal" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="moodTitle">
+      <button class="modal-close" id="closeMood" aria-label="Close">×</button>
+      <p class="eyebrow">Check in</p>
+      <h2 id="moodTitle">How are you feeling?</h2>
+      <div class="mood-grid">
+        <button data-mood="Grateful">🌿 Grateful</button>
+        <button data-mood="Proud">✨ Proud</button>
+        <button data-mood="Peaceful">☀️ Peaceful</button>
+        <button data-mood="Tired">🌙 Tired</button>
+        <button data-mood="Hopeful">🌱 Hopeful</button>
+        <button data-mood="Unsure">☁️ Unsure</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
