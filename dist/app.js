@@ -2,12 +2,7 @@ const KEYS = { posts: "innercircle-demo-posts-v2", legacyPosts: "innercircle-dem
 const $ = (selector, root = document) => root.querySelector(selector);
 const defaults = { name: "Sarah", theme: "navy", setupComplete: false };
 const starterPost = {
-  id: "garden", text: "I finally finished the little garden I’ve been working on.", image: "assets/garden-post.jpg", mood: "Proud", timestamp: "Today at 9:14 AM", saved: false,
-  responses: [
-    { id: "r-maya", friend: "maya", text: "This looks wonderful. You’ve created such a peaceful little corner." },
-    { id: "r-leo", friend: "leo", text: "What part of building it made you happiest?" },
-    { id: "r-sam", friend: "sam", text: "The herbs near the front should get excellent morning light." }
-  ]
+  id: "garden", text: "I finally finished the little garden I’ve been working on.", image: "assets/garden-post.jpg", mood: "Proud", timestamp: "Today at 9:14 AM", saved: false
 };
 
 function loadJson(key, fallback) { try { return JSON.parse(localStorage.getItem(key)) ?? fallback; } catch { return fallback; } }
