@@ -30,7 +30,7 @@ function updateIdentity() {
   const initial = firstName().charAt(0).toUpperCase() || "F";
   document.querySelectorAll(".avatar-sarah").forEach(el => el.textContent = initial);
   const chip = $(".profile-chip span:last-child"); if (chip) chip.textContent = firstName();
-  if (activeView === "feed") { $("#pageTitle").textContent = `${greeting()}, ${firstName()}`; $("#pageSubtitle").textContent = "Rant. Gloat. Whatever. Nobody’s listening."; }
+  if (activeView === "feed") { $("#pageTitle").textContent = `${greeting()}, ${firstName()}`; $("#pageSubtitle").textContent = "Rant. Gloat. Whatever. Consider it zipped."; }
 }
 
 function renderFeed(list = posts) {
