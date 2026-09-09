@@ -192,5 +192,11 @@ h1 { color: var(--navy); font-size: clamp(1.85rem, 3vw, 2.6rem); line-height: 1;
   .profile-chip span:last-child { display: none; }
   .composer-actions { align-items: flex-end; }
   .tool-button span { display: none; }
+  .main, #feedView, .feed, .post { width: 100%; min-width: 0; }
+  .composer, .post { max-width: 100%; }
   .post { padding: 16px; }
+  .post-actions { flex-wrap: wrap; }
+  .post-action { flex: 1 1 auto; }
+  .reply-box { min-width: 0; }
+  .reply-box input { min-width: 0; }
 }
