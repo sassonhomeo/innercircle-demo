@@ -40,7 +40,7 @@ function updateIdentity() {
   const initial = firstName().charAt(0).toUpperCase() || "F";
   document.querySelectorAll(".avatar-sarah").forEach(el => el.textContent = initial);
   const chip = $(".profile-chip span:last-child"); if (chip) chip.textContent = firstName();
-  if (activeView === "feed") { $("#pageTitle").textContent = `${greeting()}, ${firstName()}`; $("#pageSubtitle").textContent = "What would you like to remember about today?"; }
+  if (activeView === "feed") { $("#pageTitle").textContent = `${greeting()}, ${firstName()}`; $("#pageSubtitle").textContent = "Rant. Gloat. Whatever. Nobody’s listening."; }
 }
 
 function makeResponses(text, mood) {
@@ -84,7 +84,7 @@ function resetComposer() { $("#postText").value = ""; selectedImage = ""; select
 
 function renderJournal() {
   const entries = journalEntries.map(entry => `<article class="journal-entry card" data-journal-id="${escapeHtml(entry.id)}"><div class="journal-entry-head"><div><strong>${escapeHtml(entry.title || "Untitled reflection")}</strong><time>${escapeHtml(entry.date)}</time></div><div><button class="text-button journal-edit">Edit</button><button class="text-button journal-delete">Delete</button></div></div><p>${escapeHtml(entry.body)}</p>${entry.reflection ? `<div class="journal-reflection"><span class="avatar avatar-maya">M</span><div><strong>Maya reflects</strong><p>${escapeHtml(entry.reflection)}</p></div></div>` : ""}</article>`).join("");
-  return `<section class="journal-composer card"><p class="prompt-line">Today’s gentle prompt</p><h2>What would you like to understand—not just remember—about today?</h2><input id="journalTitle" maxlength="100" placeholder="Give this entry a title (optional)"><textarea id="journalBody" rows="8" maxlength="6000" placeholder="Write without performing for anyone…"></textarea><div class="journal-actions"><span>Saved only in this browser</span><button id="saveJournalEntry" class="primary-button">Save journal entry</button></div></section><div class="journal-list">${entries || `<article class="card empty-state"><div class="empty-icon">▤</div><h2>Your journal is ready</h2><p>Your longer reflections will appear here by date.</p></article>`}</div>`;
+  return `<section class="journal-composer card"><p class="prompt-line">Today’s prompt</p><h2>What would you like to understand—not just remember—about today?</h2><input id="journalTitle" maxlength="100" placeholder="Give this entry a title (optional)"><textarea id="journalBody" rows="8" maxlength="6000" placeholder="Write without performing for anyone…"></textarea><div class="journal-actions"><span>Saved only in this browser</span><button id="saveJournalEntry" class="primary-button">Save journal entry</button></div></section><div class="journal-list">${entries || `<article class="card empty-state"><div class="empty-icon">▤</div><h2>Your journal is ready</h2><p>Your longer reflections will appear here by date.</p></article>`}</div>`;
 }
 
 function renderSettings() {
@@ -98,7 +98,7 @@ function renderSettings() {
 const viewContent = {
   memories: { title: "Your memories", subtitle: "Moments you chose to keep, without likes or algorithms.", render: () => { const saved = posts.filter(post => post.saved); return saved.length ? `<div class="feed">${saved.map(post => `<article class="post card"><span class="mood-label">${escapeHtml(post.timestamp)}</span><p class="post-text">${escapeHtml(post.text)}</p>${post.image ? `<img class="post-image" src="${post.image}" alt="Saved memory">` : ""}</article>`).join("")}</div>` : `<article class="card empty-state"><div class="empty-icon">◇</div><h2>No saved memories yet</h2><p>Choose “Save memory” beneath any post and it will appear here.</p></article>`; } },
   friends: { title: "Your AI friends", subtitle: "Three perspectives, each with a different way of being there for you.", render: () => Object.values(friends).map(friend => `<article class="friend-detail card"><span class="avatar ${friend.avatarClass}">${friend.avatar}</span><div><h3>${friend.name} · ${friend.role}</h3><p>${friend.name === "Maya" ? "Warm and affirming. Maya notices the emotional meaning behind what you share." : friend.name === "Leo" ? "Thoughtful and curious. Leo asks questions that help you understand yourself." : "Grounded and useful. Sam helps you find the next practical step when you want one."}</p></div></article>`).join("") },
-  journal: { title: "Journal", subtitle: "A calm place for thoughts that need more room.", render: renderJournal },
+  journal: { title: "Journal", subtitle: "For whatever doesn’t fit in one quick post.", render: renderJournal },
   settings: { title: "Settings", subtitle: "You decide what this space remembers.", render: renderSettings }
 };
 
@@ -141,13 +141,13 @@ $("#genericView").addEventListener("click", event => {
 });
 
 function saveNewJournalEntry() { const body = $("#journalBody").value.trim(); if (!body) return showToast("Write something before saving your journal entry."); const title = $("#journalTitle").value.trim(); const now = new Date(); journalEntries.unshift({ id: `journal-${Date.now()}`, title, body, date: now.toLocaleDateString([], { year: "numeric", month: "long", day: "numeric" }), reflection: settings.aiEnabled && settings.enabledFriends.maya ? `There is something honest and worth noticing in what you wrote, ${firstName()}. What part would you like to carry into tomorrow?` : "" }); saveJournal(); switchView("journal"); showToast("Journal entry saved privately."); }
-function exportData() { const data = JSON.stringify({ exportedAt: new Date().toISOString(), settings, posts, journalEntries }, null, 2); const url = URL.createObjectURL(new Blob([data], { type: "application/json" })); const link = document.createElement("a"); link.href = url; link.download = `innercircle-backup-${new Date().toISOString().slice(0, 10)}.json`; link.click(); URL.revokeObjectURL(url); showToast("Backup downloaded."); }
+function exportData() { const data = JSON.stringify({ exportedAt: new Date().toISOString(), settings, posts, journalEntries }, null, 2); const url = URL.createObjectURL(new Blob([data], { type: "application/json" })); const link = document.createElement("a"); link.href = url; link.download = `zippedlips-backup-${new Date().toISOString().slice(0, 10)}.json`; link.click(); URL.revokeObjectURL(url); showToast("Backup downloaded."); }
 document.querySelectorAll(".nav-item").forEach(button => button.addEventListener("click", () => switchView(button.dataset.view)));
 $("#menuButton").addEventListener("click", () => $(".sidebar").classList.toggle("open"));
 
 function showSetup() {
   const backdrop = document.createElement("div"); backdrop.className = "modal-backdrop";
-  backdrop.innerHTML = `<div class="modal setup-modal" role="dialog" aria-modal="true" aria-labelledby="setupTitle"><span class="brand-mark">✦</span><p class="eyebrow">Welcome to your private space</p><h2 id="setupTitle">What should we call you?</h2><p>Your name stays only in this browser and can be changed anytime.</p><input id="setupName" maxlength="50" placeholder="Your name"><button id="finishSetup" class="primary-button">Enter my space</button></div>`;
+  backdrop.innerHTML = `<div class="modal setup-modal" role="dialog" aria-modal="true" aria-labelledby="setupTitle"><span class="brand-mark">✦</span><p class="eyebrow">Welcome to ZippedLips</p><h2 id="setupTitle">What should we call you?</h2><p>Your name stays only in this browser and can be changed anytime.</p><input id="setupName" maxlength="50" placeholder="Your name"><button id="finishSetup" class="primary-button">Start posting</button></div>`;
   document.body.appendChild(backdrop); $("#setupName").focus();
   $("#finishSetup", backdrop).addEventListener("click", () => { const value = $("#setupName", backdrop).value.trim(); if (!value) return; settings.name = value; settings.setupComplete = true; saveSettings(); backdrop.remove(); renderFeed(); updateIdentity(); });
 }
