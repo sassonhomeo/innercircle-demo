@@ -5,7 +5,7 @@ const friends = {
   leo: { name: "Leo", role: "Curious friend", avatar: "L", avatarClass: "avatar-leo" },
   sam: { name: "Sam", role: "Practical friend", avatar: "S", avatarClass: "avatar-sam" }
 };
-const defaults = { name: "Sarah", aiEnabled: true, memoryEnabled: true, enabledFriends: { maya: true, leo: true, sam: true }, setupComplete: false };
+const defaults = { name: "Sarah", theme: "navy", aiEnabled: true, memoryEnabled: true, enabledFriends: { maya: true, leo: true, sam: true }, setupComplete: false };
 const starterPost = {
   id: "garden", text: "I finally finished the little garden I’ve been working on.", image: "assets/garden-post.jpg", mood: "Proud", timestamp: "Today at 9:14 AM", saved: false,
   responses: [
@@ -35,6 +35,7 @@ const saveSettings = () => persist(KEYS.settings, settings);
 const saveJournal = () => persist(KEYS.journal, journalEntries);
 function escapeHtml(value = "") { return String(value).replace(/[&<>'"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" }[c])); }
 function firstName() { return (settings.name || "Friend").trim().split(/\s+/)[0]; }
+function applyTheme() { document.body.classList.toggle("theme-orange", settings.theme === "orange"); }
 function greeting() { const hour = new Date().getHours(); return hour < 12 ? "Good morning" : hour < 18 ? "Good afternoon" : "Good evening"; }
 function updateIdentity() {
   const initial = firstName().charAt(0).toUpperCase() || "F";
@@ -59,7 +60,7 @@ function makeResponses(text, mood) {
 }
 
 function renderResponses(post) {
-  if (!post.responses.length) return `<div class="quiet-response"><span>◌</span><p>Your AI circle is quiet for this post.</p></div>`;
+  if (!post.responses.length) return "";
   return post.responses.map(response => {
     const friend = friends[response.friend];
     return `<div class="response" data-response-id="${escapeHtml(response.id)}"><span class="avatar ${friend.avatarClass}">${friend.avatar}</span><div><strong>${friend.name}</strong><small>${friend.role}</small><p>${escapeHtml(response.text)}</p></div><button class="remove-response" aria-label="Remove ${friend.name}'s response">×</button></div>`;
@@ -73,8 +74,7 @@ function renderFeed(list = posts) {
     <header class="post-head"><span class="avatar avatar-sarah">${escapeHtml(firstName().charAt(0))}</span><div><strong>${escapeHtml(firstName())}</strong><time>${escapeHtml(post.timestamp)}</time></div>${post.mood ? `<span class="mood-label">Feeling ${escapeHtml(post.mood)}</span>` : ""}<button class="post-menu" aria-label="More options">···</button></header>
     <p class="post-text">${escapeHtml(post.text)}</p>${post.image ? `<img class="post-image" src="${post.image}" alt="Photo shared with this private post">` : ""}
     <div class="responses">${renderResponses(post)}</div>
-    <div class="post-actions"><button class="post-action reflect-action">♡ Reflect</button><button class="post-action save-action ${post.saved ? "saved" : ""}">${post.saved ? "◆ Saved" : "◇ Save memory"}</button><button class="post-action reply-action">◯ Reply</button><button class="post-action edit-action">Edit</button>${post.id !== "garden" ? `<button class="post-action delete-action">Delete</button>` : ""}</div>
-    <form class="reply-box" hidden><input maxlength="300" aria-label="Reply to your AI circle" placeholder="Reply to your AI circle…"><button class="primary-button">Send</button></form>
+    <div class="post-actions"><button class="post-action save-action ${post.saved ? "saved" : ""}">${post.saved ? "◆ Saved" : "◇ Save memory"}</button><button class="post-action edit-action">Edit</button>${post.id !== "garden" ? `<button class="post-action delete-action">Delete</button>` : ""}</div>
   </article>`).join("");
   updateIdentity();
 }
@@ -89,7 +89,7 @@ function renderJournal() {
 
 function renderSettings() {
   const friendRows = Object.entries(friends).map(([key, friend]) => `<div class="setting-row"><div class="friend"><span class="avatar ${friend.avatarClass}">${friend.avatar}</span><div><strong>${friend.name}</strong><small>${friend.role}</small></div></div><button class="toggle friend-toggle ${settings.enabledFriends[key] ? "on" : ""}" data-friend="${key}" aria-label="Toggle ${friend.name}"></button></div>`).join("");
-  return `<article class="card settings-card"><div class="setting-block"><label for="displayName">Your name</label><p>The greeting and AI responses will use this name.</p><div class="name-row"><input id="displayName" maxlength="50" value="${escapeHtml(settings.name)}"><button id="saveName" class="primary-button">Save name</button></div></div>
+  return `<article class="card settings-card"><div class="setting-block"><label for="displayName">Your name</label><p>The greeting and AI responses will use this name.</p><div class="name-row"><input id="displayName" maxlength="50" value="${escapeHtml(settings.name)}"><button id="saveName" class="primary-button">Save name</button></div></div>\n  <div class="setting-block"><label>Color theme</label><p>Choose the look you prefer. It will stay selected in this browser.</p><div class="theme-options"><button class="theme-option ${settings.theme === "navy" ? "active" : ""}" data-theme="navy"><span class="theme-swatch navy"></span>Navy Blue</button><button class="theme-option ${settings.theme === "orange" ? "active" : ""}" data-theme="orange"><span class="theme-swatch orange"></span>Zipped Orange</button></div></div>
   <div class="setting-row"><div><strong>AI responses</strong><small>Allow selected AI friends to respond to new posts.</small></div><button class="toggle setting-toggle ${settings.aiEnabled ? "on" : ""}" data-setting="aiEnabled" aria-label="Toggle AI responses"></button></div>
   <div class="setting-row"><div><strong>Remember conversations</strong><small>Let responses refer to things you shared earlier.</small></div><button class="toggle setting-toggle ${settings.memoryEnabled ? "on" : ""}" data-setting="memoryEnabled" aria-label="Toggle conversation memory"></button></div>
   <div class="setting-block"><label>Who may respond</label><p>Choose one friend, all three, or none.</p>${friendRows}</div><div class="setting-block"><label>Your data</label><p>Download a backup before clearing browser data or moving devices.</p><div class="data-actions"><button id="exportData" class="secondary-button">Download backup</button><button id="resetData" class="danger-button">Reset this browser</button></div></div></article>`;
@@ -120,16 +120,13 @@ $("#postButton").addEventListener("click", () => { const text = $("#postText").v
 $("#feed").addEventListener("click", event => {
   const article = event.target.closest(".post"); if (!article) return; const post = posts.find(item => item.id === article.dataset.id); if (!post) return;
   if (event.target.closest(".save-action")) { post.saved = !post.saved; savePosts(); renderFeed(); showToast(post.saved ? "Saved to your memories." : "Removed from memories."); }
-  if (event.target.closest(".reply-action")) article.querySelector(".reply-box").hidden = false;
-  if (event.target.closest(".reflect-action")) showToast("Take a breath. What part of this moment stays with you?");
   if (event.target.closest(".edit-action")) { const revised = prompt("Edit your post:", post.text); if (revised !== null && revised.trim()) { post.text = revised.trim(); savePosts(); renderFeed(); showToast("Post updated."); } }
   if (event.target.closest(".delete-action")) { posts = posts.filter(item => item.id !== article.dataset.id); savePosts(); renderFeed(); showToast("Post deleted from this browser."); }
   const responseEl = event.target.closest(".response"); if (event.target.closest(".remove-response") && responseEl) { post.responses = post.responses.filter(r => r.id !== responseEl.dataset.responseId); savePosts(); renderFeed(); showToast("AI response removed."); }
 });
-$("#feed").addEventListener("submit", event => { if (!event.target.matches(".reply-box")) return; event.preventDefault(); const input = event.target.querySelector("input"); if (!input.value.trim()) return; const post = posts.find(item => item.id === event.target.closest(".post").dataset.id); if (!settings.aiEnabled || !settings.enabledFriends.maya) return showToast("AI responses are turned off for Maya."); post.responses.push({ id: `reply-${Date.now()}`, friend: "maya", text: `I’m listening, ${firstName()}. Thank you for telling me a little more.` }); savePosts(); renderFeed(); showToast("Your private conversation continues."); });
-
 $("#genericView").addEventListener("click", event => {
   if (event.target.id === "saveName") { const value = $("#displayName").value.trim(); if (!value) return showToast("Please enter a name."); settings.name = value; settings.setupComplete = true; saveSettings(); updateIdentity(); showToast("Your name is saved in this browser."); }
+  const themeOption = event.target.closest(".theme-option"); if (themeOption) { settings.theme = themeOption.dataset.theme; saveSettings(); applyTheme(); switchView("settings"); showToast(`${themeOption.dataset.theme === "orange" ? "Zipped Orange" : "Navy Blue"} theme selected.`); return; }
   const toggle = event.target.closest(".setting-toggle"); if (toggle) { settings[toggle.dataset.setting] = !settings[toggle.dataset.setting]; toggle.classList.toggle("on", settings[toggle.dataset.setting]); saveSettings(); showToast(`${toggle.dataset.setting === "aiEnabled" ? "AI responses" : "Conversation memory"} ${settings[toggle.dataset.setting] ? "on" : "off"}.`); }
   const friendToggle = event.target.closest(".friend-toggle"); if (friendToggle) { const key = friendToggle.dataset.friend; settings.enabledFriends[key] = !settings.enabledFriends[key]; friendToggle.classList.toggle("on", settings.enabledFriends[key]); saveSettings(); }
   if (event.target.id === "saveJournalEntry") saveNewJournalEntry();
@@ -151,4 +148,4 @@ function showSetup() {
   document.body.appendChild(backdrop); $("#setupName").focus();
   $("#finishSetup", backdrop).addEventListener("click", () => { const value = $("#setupName", backdrop).value.trim(); if (!value) return; settings.name = value; settings.setupComplete = true; saveSettings(); backdrop.remove(); renderFeed(); updateIdentity(); });
 }
-renderFeed(); updateIdentity(); if (!settings.setupComplete) showSetup();
+applyTheme(); renderFeed(); updateIdentity(); if (!settings.setupComplete) showSetup();
