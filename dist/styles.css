@@ -196,6 +196,41 @@ h1 { color: var(--navy); font-size: clamp(1.85rem, 3vw, 2.6rem); line-height: 1;
 .calendar-results { margin-top: 16px; display: grid; gap: 10px; }
 .calendar-item { padding: 16px; }
 .calendar-item p { margin: 5px 0 0; white-space: pre-wrap; }
+.shipment-overview { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 24px; margin-bottom: 18px; border-top: 5px solid var(--navy); }
+.shipment-overview h2 { margin: 0 0 5px; color: var(--navy); font-size: 1.7rem; }
+.shipment-overview p:last-child { margin: 0; color: var(--muted); }
+.shipment-status { color: #17643a; background: #e3f4e9; border-radius: 999px; padding: 8px 12px; font-size: .82rem; font-weight: 700; }
+.shipment-timeline { display: grid; grid-template-columns: auto 1fr auto 1fr auto 1fr auto; align-items: start; padding: 24px; margin-bottom: 18px; overflow-x: auto; }
+.shipment-step { min-width: 72px; text-align: center; color: var(--muted); }
+.shipment-step span { width: 34px; height: 34px; display: grid; place-items: center; margin: 0 auto 8px; border-radius: 50%; background: #edf1f4; color: var(--muted); font-weight: 700; }
+.shipment-step strong, .shipment-step small { display: block; }
+.shipment-step strong { color: var(--ink); font-size: .9rem; }
+.shipment-step small { margin-top: 3px; font-size: .72rem; }
+.shipment-step.complete span, .shipment-step.active span { background: var(--navy); color: white; }
+.shipment-step.active strong { color: var(--navy); }
+.shipment-line { min-width: 24px; height: 3px; background: var(--line); margin-top: 16px; }
+.shipment-line.complete, .shipment-line.active { background: var(--navy); }
+.shipment-details { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.shipment-detail { padding: 18px; }
+.detail-label { color: var(--muted); margin: 0 0 6px; font-size: .78rem; }
+.shipment-detail strong { color: var(--navy); }
+.shipment-section-title { color: var(--navy); margin: 28px 0 13px; font-size: 1.15rem; }
+.portal-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.portal-card { display: grid; grid-template-columns: 42px 1fr auto; align-items: center; gap: 12px; width: 100%; border: 1px solid var(--line); background: var(--paper); color: var(--ink); border-radius: 15px; padding: 16px; text-align: left; box-shadow: var(--shadow); }
+.portal-card:hover { border-color: var(--navy-2); transform: translateY(-1px); }
+.portal-card strong, .portal-card small { display: block; }
+.portal-card strong { color: var(--navy); }
+.portal-card small { color: var(--muted); margin-top: 3px; line-height: 1.35; }
+.portal-card b { color: var(--navy-2); font-size: 1.4rem; }
+.portal-icon { width: 40px; height: 40px; display: grid; place-items: center; border-radius: 11px; background: var(--blue-soft); color: var(--navy); font-weight: 700; }
+.portal-note { color: var(--muted); font-size: .8rem; text-align: center; margin: 16px 0 0; }
+.signin-options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 9px; }
+.signin-button { border: 1px solid var(--line); background: white; color: var(--ink); padding: 11px; border-radius: 11px; font-weight: 700; }
+.signin-button:hover { border-color: var(--navy-2); background: var(--blue-soft); }
+.signin-symbol { display: inline-grid; place-items: center; width: 22px; height: 22px; margin-right: 5px; color: var(--navy); }
+.signin-symbol.apple { color: #111; font-size: .7rem; }
+.signin-symbol.google { color: #4285f4; }
+.preview-label { display: block; color: var(--muted); margin-top: 9px; }
 .lock-screen { position: fixed; inset: 0; z-index: 100; background: var(--canvas); display: grid; place-items: center; padding: 20px; }
 .lock-card { width: min(390px, 100%); padding: 30px; text-align: center; }
 .lock-card h1 { margin-bottom: 10px; }
@@ -246,4 +281,7 @@ h1 { color: var(--navy); font-size: clamp(1.85rem, 3vw, 2.6rem); line-height: 1;
   .calendar-grid { gap: 4px; }
   .calendar-day { min-height: 58px; padding: 7px; }
   .calendar-day small { font-size: .65rem; margin-top: 8px; }
+  .shipment-details, .portal-actions, .signin-options { grid-template-columns: 1fr; }
+  .shipment-timeline { padding: 18px 12px; }
+  .shipment-overview { align-items: flex-start; }
 }
