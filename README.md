@@ -1,14 +1,19 @@
-# InnerCircle desktop prototype
+# Just Mine
 
-A static, GitHub Pages–compatible demonstration of a private social feed where only AI companions respond.
+A private, GitHub Pages–compatible space for notes, photos, memories, and journaling.
 
 ## What works
 
 - Create private text posts
-- Add a local photo and mood
-- Receive simulated replies from Maya, Leo, and Sam
-- Reply to the AI circle
+- Automatically resize and compress local photos
+- Add moods and tags
+- Search posts and tags
 - Save posts as memories
+- Browse posts and journal entries by calendar date
+- See “On This Day” memories
+- Use rotating daily journal prompts
+- Add an optional local PIN screen
+- Download and restore backups
 - Browser-local persistence with `localStorage`
 - Responsive desktop and mobile layouts
 
@@ -16,4 +21,4 @@ A static, GitHub Pages–compatible demonstration of a private social feed where
 
 The included workflow publishes the contents of the `dist` folder.
 
-This is a demonstration only. It has no real AI connection, user accounts, or cloud storage.
+This version stores data in the current browser. It does not yet include user accounts, encryption, or cloud storage.
