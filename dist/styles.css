@@ -1,40 +1,40 @@
 :root {
-  --navy: #102e4f;
-  --navy-2: #173f68;
+  --navy: #003f8f;
+  --navy-2: #1261b5;
   --ink: #24364a;
   --muted: #718096;
   --line: #dfe6ec;
   --paper: #ffffff;
   --canvas: #f5f7f8;
-  --sage: #dfeade;
-  --sage-deep: #56735a;
-  --blue-soft: #e8eff7;
+  --sage: #dcecff;
+  --sage-deep: #0756a6;
+  --blue-soft: #e8f2ff;
   --coral-soft: #f6e3dc;
   --shadow: 0 12px 34px rgba(22, 47, 71, .07);
 }
 
 body.theme-orange {
-  --navy: #a93c28;
-  --navy-2: #cf543b;
-  --ink: #442e2a;
-  --muted: #846c66;
-  --line: #ead8d2;
-  --canvas: #fff6f1;
-  --sage: #f6d7ca;
-  --sage-deep: #a93c28;
-  --blue-soft: #f9ded5;
-  --coral-soft: #f7d3c8;
-  --shadow: 0 12px 34px rgba(132, 57, 39, .10);
+  --navy: #005eb8;
+  --navy-2: #2783d9;
+  --ink: #173a5e;
+  --muted: #637c96;
+  --line: #d7e7f5;
+  --canvas: #f2f8ff;
+  --sage: #d7ecff;
+  --sage-deep: #0756a6;
+  --blue-soft: #e1f1ff;
+  --coral-soft: #e8f2ff;
+  --shadow: 0 12px 34px rgba(0, 94, 184, .10);
 }
-body.theme-orange .sidebar { background: #fffaf7; }
-body.theme-orange .rightbar { background: #fff8f4; }
-body.theme-orange .nav-item:hover { background: #f9e8e1; }
-body.theme-orange .privacy-card { background: linear-gradient(145deg, #f9dfd5, #fff0e8); border-color: #edcfc3; }
-body.theme-orange .privacy-card .lock { background: #f0c4b5; }
-body.theme-orange .thought-card { background: #a93c28; }
+body.theme-orange .sidebar { background: #f9fcff; }
+body.theme-orange .rightbar { background: #f5faff; }
+body.theme-orange .nav-item:hover { background: #e5f2ff; }
+body.theme-orange .privacy-card { background: linear-gradient(145deg, #e3f2ff, #f8fcff); border-color: #cde3f7; }
+body.theme-orange .privacy-card .lock { background: #d3e9fb; }
+body.theme-orange .thought-card { background: #005eb8; }
 body.theme-orange .response,
-body.theme-orange .mood-grid button { background: #fffaf7; border-color: #ecdcd6; }
-body.theme-orange .journal-reflection { background: #fff7f3; }
+body.theme-orange .mood-grid button { background: #f8fcff; border-color: #d7e7f5; }
+body.theme-orange .journal-reflection { background: #f3f9ff; }
 
 * { box-sizing: border-box; }
 html { font-size: 16px; }
@@ -49,9 +49,8 @@ button { cursor: pointer; }
 .main { padding: 34px 36px 80px; min-width: 0; }
 
 .brand { color: var(--navy); text-decoration: none; display: block; margin: 0 8px 44px; }
-.brand-wordmark { display: block; font-family: "Newsreader", serif; font-size: 1.75rem; font-weight: 500; letter-spacing: -.04em; line-height: 1; }
-.brand-zipped { color: #e9553f; }
-.brand-lips { color: var(--navy); }
+.brand-wordmark { display: block; font-family: "DM Sans", system-ui, sans-serif; font-size: 1.6rem; font-weight: 700; letter-spacing: -.035em; line-height: 1; }
+.brand-zipped, .brand-lips { color: var(--navy); }
 .brand small { display: block; color: var(--muted); margin-top: 7px; letter-spacing: .01em; }
 nav { display: grid; gap: 8px; }
 .nav-item { width: 100%; border: 0; background: transparent; color: var(--ink); display: flex; align-items: center; gap: 14px; border-radius: 12px; padding: 14px 15px; text-align: left; font-weight: 600; }
@@ -74,8 +73,7 @@ h1 { color: var(--navy); font-size: clamp(1.85rem, 3vw, 2.6rem); line-height: 1;
 
 .card { background: var(--paper); border: 1px solid var(--line); border-radius: 18px; box-shadow: var(--shadow); }
 .composer { padding: 20px; margin-bottom: 22px; }
-.feed-tools { display: grid; grid-template-columns: 1fr 180px; gap: 10px; padding: 12px; margin-bottom: 12px; }
-.feed-tools input, .calendar-toolbar select, .pin-input, .import-label { border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; background: var(--paper); color: var(--ink); font: inherit; }
+.calendar-toolbar select, .pin-input, .import-label { border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; background: var(--paper); color: var(--ink); font: inherit; }
 .composer-row { display: flex; align-items: flex-start; gap: 14px; }
 .composer textarea { border: 0; resize: vertical; outline: 0; width: 100%; min-height: 60px; padding: 10px 4px; color: var(--ink); font-size: 1.05rem; line-height: 1.5; }
 .composer textarea::placeholder { color: #929eab; }
@@ -133,7 +131,7 @@ h1 { color: var(--navy); font-size: clamp(1.85rem, 3vw, 2.6rem); line-height: 1;
 .friend strong, .friend small { display: block; }
 .friend strong { color: var(--navy); }
 .friend small { color: var(--muted); margin-top: 2px; }
-.privacy-card { padding: 24px; background: linear-gradient(145deg, #e9f1e7, #f4f6ed); border: 1px solid #dce7d9; border-radius: 18px; }
+.privacy-card { padding: 24px; background: linear-gradient(145deg, #e4f1ff, #f7fbff); border: 1px solid #cee2f6; border-radius: 18px; }
 .privacy-card .lock { display: grid; place-items: center; width: 43px; height: 43px; border-radius: 14px; background: #cadfc9; color: var(--navy); font-size: 1.6rem; margin-bottom: 20px; }
 .privacy-card > p:last-child { color: #5f6d68; line-height: 1.55; font-size: .88rem; }
 .thought-card { border-radius: 18px; padding: 22px; background: var(--navy); color: white; }
@@ -164,7 +162,7 @@ h1 { color: var(--navy); font-size: clamp(1.85rem, 3vw, 2.6rem); line-height: 1;
 .theme-option.active { border-color: var(--navy); box-shadow: 0 0 0 3px var(--blue-soft); color: var(--navy); }
 .theme-swatch { width: 24px; height: 24px; flex: 0 0 auto; border-radius: 8px; }
 .theme-swatch.navy { background: #102e4f; }
-.theme-swatch.orange { background: #cf543b; }
+.theme-swatch.orange { background: #2783d9; }
 .name-row input, .journal-composer input, .journal-composer textarea, .setup-modal input { width: 100%; border: 1px solid var(--line); border-radius: 11px; padding: 11px 13px; outline: none; color: var(--ink); background: white; }
 .name-row input:focus, .journal-composer input:focus, .journal-composer textarea:focus, .setup-modal input:focus { border-color: var(--navy-2); box-shadow: 0 0 0 3px var(--blue-soft); }
 .secondary-button, .danger-button { border: 1px solid var(--navy); background: white; color: var(--navy); padding: 10px 15px; border-radius: 10px; font-weight: 700; }
@@ -245,7 +243,6 @@ h1 { color: var(--navy); font-size: clamp(1.85rem, 3vw, 2.6rem); line-height: 1;
   .post { padding: 16px; }
   .post-actions { flex-wrap: wrap; }
   .post-action { flex: 1 1 auto; }
-  .feed-tools { grid-template-columns: 1fr; }
   .calendar-grid { gap: 4px; }
   .calendar-day { min-height: 58px; padding: 7px; }
   .calendar-day small { font-size: .65rem; margin-top: 8px; }
