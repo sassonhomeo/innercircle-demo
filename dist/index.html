@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#102e4f">
-  <meta name="description" content="Just Mine — your thoughts, your memories, your space.">
-  <title>Just Mine — Your private space</title>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2715%27 fill=%27%23102e4f%27/%3E%3Ctext x=%2732%27 y=%2741%27 text-anchor=%27middle%27 font-family=%27Arial,sans-serif%27 font-size=%2726%27 font-weight=%27900%27 fill=%27%23ef5b42%27%3EZL%3C/text%3E%3C/svg%3E">
+  <meta name="description" content="My Aliyah — privately chronicle your journey and life in Israel.">
+  <title>My Aliyah</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2715%27 fill=%27%23003f8f%27/%3E%3Ctext x=%2732%27 y=%2741%27 text-anchor=%27middle%27 font-family=%27Arial,sans-serif%27 font-size=%2725%27 font-weight=%27700%27 fill=%27white%27%3EMA%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@1,6..72,500&display=swap" rel="stylesheet">
@@ -15,23 +15,18 @@
 <body>
   <div class="shell">
     <aside class="sidebar" aria-label="Main navigation">
-      <a class="brand" href="#" aria-label="Just Mine home">
-        <span class="brand-wordmark" aria-hidden="true"><span class="brand-zipped">Just</span><span class="brand-lips"> Mine</span></span>
-        <small>Your private space.</small>
+      <a class="brand" href="#" aria-label="My Aliyah home">
+        <span class="brand-wordmark" aria-hidden="true">My Aliyah</span>
       </a>
 
       <nav>
-        <button class="nav-item active" data-view="feed"><span>⌂</span>My Feed</button>
+        <button class="nav-item active" data-view="feed"><span>⌂</span>My Journey</button>
         <button class="nav-item" data-view="memories"><span>◇</span>Memories</button>
         <button class="nav-item" data-view="journal"><span>▤</span>Journal</button>
         <button class="nav-item" data-view="calendar"><span>□</span>Calendar</button>
         <button class="nav-item" data-view="settings"><span>⚙</span>Settings</button>
       </nav>
 
-      <div class="sidebar-note">
-        <p>Your thoughts.<br>Your memories.</p>
-        <span>Your space.</span>
-      </div>
     </aside>
 
     <main class="main">
@@ -39,20 +34,16 @@
         <button class="menu-button" id="menuButton" aria-label="Open menu">☰</button>
         <div>
           <h1 id="pageTitle">Good morning, Sarah</h1>
-          <p id="pageSubtitle">Your thoughts. Your memories. Your space.</p>
+          <p id="pageSubtitle"></p>
         </div>
         <div class="profile-chip"><span class="avatar avatar-sarah">S</span><span>Sarah</span></div>
       </header>
 
       <section id="feedView" class="view active-view">
-        <div class="feed-tools card">
-          <input id="searchInput" type="search" placeholder="Search your space" aria-label="Search posts">
-          <input id="tagInput" maxlength="30" placeholder="Tag (optional)" aria-label="Tag this post">
-        </div>
         <article class="composer card">
           <div class="composer-row">
             <span class="avatar avatar-sarah">S</span>
-            <textarea id="postText" rows="2" maxlength="600" placeholder="Rant. Gloat. Say whatever."></textarea>
+            <textarea id="postText" rows="2" maxlength="600" placeholder="What’s up?"></textarea>
           </div>
           <div id="imagePreviewWrap" class="image-preview-wrap" hidden>
             <img id="imagePreview" alt="Your selected photo">
@@ -79,14 +70,11 @@
     <aside class="rightbar">
       <section class="privacy-card">
         <span class="lock" aria-hidden="true">⌑</span>
-        <p class="eyebrow">No audience</p>
-        <h2>Entirely yours.</h2>
-        <p>Keep the thought, the win, or the ordinary moment. No audience. No performance.</p>
+        <p class="eyebrow">Private journal</p>
+        <h2>Your aliyah story</h2>
+        <p>Keep everyday moments, photographs, milestones, and reflections from your life in Israel.</p>
       </section>
 
-      <section class="thought-card">
-        <p>“A little corner of life that belongs only to you.”</p>
-      </section>
     </aside>
   </div>
 
