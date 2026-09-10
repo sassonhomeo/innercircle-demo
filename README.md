@@ -1,6 +1,6 @@
-# Just Mine
+# My Aliyah
 
-A private, GitHub Pages–compatible space for notes, photos, memories, and journaling.
+A private, GitHub Pages–compatible app for chronicling an aliyah journey through notes, photos, memories, and journal entries.
 
 ## What works
 
