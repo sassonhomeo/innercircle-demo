@@ -285,3 +285,20 @@ h1 { color: var(--navy); font-size: clamp(1.85rem, 3vw, 2.6rem); line-height: 1;
   .shipment-timeline { padding: 18px 12px; }
   .shipment-overview { align-items: flex-start; }
 }
+
+
+/* Secure account screen */
+.auth-page { min-height:100vh; display:grid; place-items:center; padding:24px; background:linear-gradient(145deg,#eef6ff,#fff); }
+.auth-card { width:min(430px,100%); background:#fff; border:1px solid var(--line); border-radius:22px; padding:34px; box-shadow:var(--shadow); }
+.auth-brand { color:var(--navy); font-size:1.6rem; font-weight:700; letter-spacing:-.04em; margin:0 0 32px; }
+.auth-card h1 { margin-bottom:12px; }
+.auth-intro { color:var(--muted); line-height:1.55; margin:0 0 24px; }
+.auth-card form { display:grid; gap:15px; }
+.auth-card label { color:var(--navy); font-size:.86rem; font-weight:700; }
+.auth-card input { display:block; width:100%; margin-top:6px; border:1px solid var(--line); border-radius:11px; padding:12px 13px; font:inherit; }
+.auth-card input:focus { outline:0; border-color:var(--navy-2); box-shadow:0 0 0 3px var(--blue-soft); }
+.auth-card form .primary-button { width:100%; margin-top:3px; }
+.auth-secondary { width:100%; margin-top:11px; }
+.auth-message { min-height:24px; margin:16px 0 0; color:var(--sage-deep); font-size:.88rem; line-height:1.45; }
+.auth-message.error { color:#9a453e; }
+.portal-card { text-decoration:none; }
