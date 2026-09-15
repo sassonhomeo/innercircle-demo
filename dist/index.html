@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#102e4f">
-  <meta name="description" content="My Aliyah — privately chronicle your journey and life in Israel.">
-  <title>My Aliyah</title>
+  <meta name="description" content="My Aliyah Journal+ — privately chronicle your journey and life in Israel.">
+  <title>My Aliyah Journal+</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2715%27 fill=%27%23003f8f%27/%3E%3Ctext x=%2732%27 y=%2741%27 text-anchor=%27middle%27 font-family=%27Arial,sans-serif%27 font-size=%2725%27 font-weight=%27700%27 fill=%27white%27%3EMA%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,10 +15,7 @@
 <body>
   <div class="shell">
     <aside class="sidebar" aria-label="Main navigation">
-      <a class="brand" href="#" aria-label="My Aliyah home">
-        <span class="brand-wordmark" aria-hidden="true">My Aliyah</span>
-      </a>
-
+      <a class="brand" href="#" aria-label="My Aliyah Journal+ home"><span class="brand-wordmark" aria-hidden="true">My Aliyah Journal+</span></a>
       <nav>
         <button class="nav-item active" data-view="feed"><span>⌂</span>Posts</button>
         <button class="nav-item" data-view="memories"><span>◇</span>Memories</button>
@@ -27,75 +24,28 @@
         <button class="nav-item" data-view="shipment"><span>▣</span>My Shipment</button>
         <button class="nav-item" data-view="settings"><span>⚙</span>Settings</button>
       </nav>
-
     </aside>
-
     <main class="main">
       <header class="topbar">
         <button class="menu-button" id="menuButton" aria-label="Open menu">☰</button>
-        <div>
-          <h1 id="pageTitle">Good morning, Sarah</h1>
-          <p id="pageSubtitle"></p>
-        </div>
+        <div><h1 id="pageTitle">Good morning, Sarah</h1><p id="pageSubtitle"></p></div>
         <div class="profile-chip"><span class="avatar avatar-sarah">S</span><span>Sarah</span></div>
       </header>
-
       <section id="feedView" class="view active-view">
         <article class="composer card">
-          <div class="composer-row">
-            <span class="avatar avatar-sarah">S</span>
-            <textarea id="postText" rows="2" maxlength="600" placeholder="What’s up?"></textarea>
-          </div>
-          <div id="imagePreviewWrap" class="image-preview-wrap" hidden>
-            <img id="imagePreview" alt="Your selected photo">
-            <button id="removePhoto" class="icon-button" aria-label="Remove photo">×</button>
-          </div>
-          <div class="composer-actions">
-            <div class="composer-tools">
-              <label class="tool-button" for="photoInput">▧ <span>Add photo</span></label>
-              <input id="photoInput" type="file" accept="image/*" hidden>
-              <button class="tool-button" id="moodButton">☺ <span>Add mood</span></button>
-              <span id="selectedMood" class="selected-mood" hidden></span>
-            </div>
-            <button id="postButton" class="primary-button">Post it</button>
-          </div>
+          <div class="composer-row"><span class="avatar avatar-sarah">S</span><textarea id="postText" rows="2" maxlength="600" placeholder="What’s up?"></textarea></div>
+          <div id="imagePreviewWrap" class="image-preview-wrap" hidden><img id="imagePreview" alt="Your selected photo"><button id="removePhoto" class="icon-button" aria-label="Remove photo">×</button></div>
+          <div class="composer-actions"><div class="composer-tools"><label class="tool-button" for="photoInput">▧ <span>Add photo</span></label><input id="photoInput" type="file" accept="image/*" hidden><button class="tool-button" id="moodButton">☺ <span>Add mood</span></button><span id="selectedMood" class="selected-mood" hidden></span></div><button id="postButton" class="primary-button">Post it</button></div>
         </article>
-
-        <div id="toast" class="toast" role="status" aria-live="polite"></div>
-        <div id="feed" class="feed" aria-live="polite"></div>
+        <div id="toast" class="toast" role="status" aria-live="polite"></div><div id="feed" class="feed" aria-live="polite"></div>
       </section>
-
       <section id="genericView" class="view"></section>
     </main>
-
-    <aside class="rightbar">
-      <section class="privacy-card">
-        <span class="lock" aria-hidden="true">⌑</span>
-        <p class="eyebrow">Private journal</p>
-        <h2>Your aliyah story</h2>
-        <p>Keep everyday moments, photographs, milestones, and reflections from your life in Israel.</p>
-      </section>
-
-    </aside>
+    <aside class="rightbar"><section class="privacy-card"><span class="lock" aria-hidden="true">⌑</span><p class="eyebrow">Private journal</p><h2>Your aliyah story</h2><p>Keep everyday moments, photographs, milestones, and reflections from your life in Israel.</p></section></aside>
   </div>
-
-  <div class="modal-backdrop" id="moodModal" hidden>
-    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="moodTitle">
-      <button class="modal-close" id="closeMood" aria-label="Close">×</button>
-      <p class="eyebrow">Right now</p>
-      <h2 id="moodTitle">What’s your mood?</h2>
-      <div class="mood-grid">
-        <button data-mood="Content">🙂 Content</button>
-        <button data-mood="Proud">⭐ Proud</button>
-        <button data-mood="Frustrated">😤 Frustrated</button>
-        <button data-mood="Tired">😴 Tired</button>
-        <button data-mood="Hopeful">🤞 Hopeful</button>
-        <button data-mood="Unsure">🤷 Unsure</button>
-      </div>
-    </div>
-  </div>
-
+  <div class="modal-backdrop" id="moodModal" hidden><div class="modal" role="dialog" aria-modal="true" aria-labelledby="moodTitle"><button class="modal-close" id="closeMood" aria-label="Close">×</button><p class="eyebrow">Right now</p><h2 id="moodTitle">What’s your mood?</h2><div class="mood-grid"><button data-mood="Content">🙂 Content</button><button data-mood="Proud">⭐ Proud</button><button data-mood="Frustrated">😤 Frustrated</button><button data-mood="Tired">😴 Tired</button><button data-mood="Hopeful">🤞 Hopeful</button><button data-mood="Unsure">🤷 Unsure</button></div></div></div>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="cloud.js"></script>
+  <script src="book.js"></script>
 </body>
 </html>
