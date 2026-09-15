@@ -1,4 +1,4 @@
-# My Aliyah
+# My Aliyah Journal+
 
 A private, GitHub Pages–compatible app for chronicling an aliyah journey through notes, photos, memories, and journal entries.
 
