@@ -12,9 +12,11 @@
   function authScreen(message=""){
     document.body.innerHTML = `<main class="auth-page">
       <section class="auth-card">
-        <p class="auth-brand">My Aliyah</p>
+        <p class="auth-brand">My Aliyah Journal+</p>
         <h1>Welcome</h1>
         <p class="auth-intro">Sign in to keep your posts, photographs, journal and shipment information private and available on all your devices.</p>
+        <button id="googleSignIn" class="secondary-button auth-secondary" type="button">Continue with Google</button>
+        <p class="auth-message" style="margin:14px 0 8px">or sign in with email</p>
         <form id="authForm">
           <label>Email address<input id="authEmail" type="email" required autocomplete="email"></label>
           <label>Password<input id="authPassword" type="password" required minlength="8" autocomplete="current-password"></label>
@@ -24,6 +26,14 @@
         <p id="authMessage" class="auth-message" aria-live="polite">${esc(message)}</p>
       </section>
     </main>`;
+    document.querySelector("#googleSignIn").addEventListener("click", async () => {
+      setMessage("Opening Google sign in…");
+      const { error } = await client.auth.signInWithOAuth({
+        provider:"google",
+        options:{ redirectTo:location.origin + location.pathname }
+      });
+      if(error) setMessage(error.message, true);
+    });
     document.querySelector("#authForm").addEventListener("submit", async e => {
       e.preventDefault();
       setMessage("Signing in…");
@@ -68,7 +78,7 @@
         journal.push({id:e.id,title:e.title||"",body:e.body,createdAt:e.occurred_at,date:""});
       }
     }
-    const settings={name:profile?.display_name||user.email.split("@")[0],theme:profile?.theme||"navy",setupComplete:true,pin:"",aliyahDate:profile?.aliyah_date||""};
+    const settings={name:profile?.display_name||user.user_metadata?.full_name||user.email.split("@")[0],theme:profile?.theme||"navy",setupComplete:true,pin:"",aliyahDate:profile?.aliyah_date||""};
     originalSet.call(localStorage,KEYS.posts,JSON.stringify(posts));
     originalSet.call(localStorage,KEYS.journal,JSON.stringify(journal));
     originalSet.call(localStorage,KEYS.settings,JSON.stringify(settings));
